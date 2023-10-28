@@ -1,0 +1,33 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: npd-kubernetes
+  region: us-east-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: m5.large
+    desiredCapacity: 2
+    volumeSize: 20
+    minSize: 2
+    maxSize: 5
+    availabilityZones: ["us-east-1a"]
+    privateNetworking: true
+    ssh:
+      allow: true
+      publicKeyPath: ~/.ssh/ubuntu-key.pub
+
+  - name: ng-2
+    instanceType: m5.large
+    desiredCapacity: 2
+    volumeSize: 20
+    minSize: 2
+    maxSize: 5
+    availabilityZones: ["us-east-1b"]
+    privateNetworking: true
+    ssh:
+      allow: true
+      publicKeyPath: ~/.ssh/ubuntu-key.pub
+
+availabilityZones: ["us-east-1a", "us-east-1b"]
